@@ -11,7 +11,17 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
+Route::group(array('prefix' => 'auth'), function(){
+	
+	Route::get('/login', array('as' => 'user.login.view', 'uses' => 'AuthController@login'));
+	
+	Route::get('/register', array('as' => 'user.register.view', 'uses' => 'AuthController@register'));
+
+	Route::post('/login', array('as' => 'user.login.handle', 'uses' => 'AuthController@handleLogin'));
+	
+	Route::post('/register', array('as' => 'user.register.handle', 'uses' => 'AuthController@handleRegister'));
 });
+
+
+
+Route::get('template', 'HomeController@template');
