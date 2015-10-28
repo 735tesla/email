@@ -25,3 +25,8 @@ Route::group(array('prefix' => 'auth'), function(){
 
 
 Route::get('template', 'HomeController@template');
+
+Route::get('/main', 'HomeController@main');
+
+Route::get('/email', array('as' => 'email', 'uses' => 'HomeController@email'));
+

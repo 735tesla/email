@@ -42,7 +42,7 @@
             </a>
             <ul>
               <li><a class="btn-floating blue" title="Email a Judge"><i style="font-size:22pt;margin-top:5px" class="material-icons">account_box</i></a></li>
-              <li><a class="btn-floating green" title="Email a Sponsor"><i style="font-size:22pt;margin-top:5px" class="material-icons">credit_card</i></a></li>
+              <li><a href="{{route('email')}}" class="btn-floating green" title="Email a Sponsor"><i style="font-size:22pt;margin-top:5px" class="material-icons">credit_card</i></a></li>
               <!--<li><a class="btn-floating green"></a></li>
               <li><a class="btn-floating blue"></a></li>-->
             </ul>

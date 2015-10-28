@@ -25,4 +25,14 @@ class HomeController extends BaseController {
 		return View::make('template');
 	}
 
+	public function main()
+	{
+		return View::make('main');
+	}
+
+	public function email()
+	{
+		return View::make('email');
+	}
+
 }
