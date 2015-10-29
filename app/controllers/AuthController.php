@@ -17,6 +17,8 @@ class AuthController extends BaseController {
 	public function handleLogin()
 	{
 		$input = Input::all();
+		
+		$input['activated'] = true;
 
 		try {
 			$user = Sentry::authenticate($input);	
