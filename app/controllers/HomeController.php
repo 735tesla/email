@@ -35,4 +35,18 @@ class HomeController extends BaseController {
 		return View::make('email');
 	}
 
+	public function sendEmail()
+	{
+		$input = Input::all();
+		$user = Sentry::getUser();
+		$input['user'] = $user;
+		$email = $input['email'];
+		Mail::send('emails.sponsor', $input, function($message) use ($email)
+		{
+		    $message->to("$email")->subject('hackGFS - Philadelphia\'s First Highschool Hackathon!');
+		});
+
+		dd($input);
+	}
+
 }

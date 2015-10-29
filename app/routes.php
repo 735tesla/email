@@ -30,3 +30,5 @@ Route::get('/main', 'HomeController@main');
 
 Route::get('/email', array('as' => 'email', 'uses' => 'HomeController@email'));
 
+Route::post('/email', array('as' => 'email.send', 'uses' => 'HomeController@sendEmail'));
+
