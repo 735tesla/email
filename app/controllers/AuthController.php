@@ -18,7 +18,7 @@ class AuthController extends BaseController {
 	{
 		$input = Input::all();
 		
-		$input['activated'] = true;
+		$input['activated'] = 1;
 
 		try {
 			$user = Sentry::authenticate($input);	
