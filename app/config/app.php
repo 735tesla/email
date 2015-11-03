@@ -195,6 +195,10 @@ return array(
 		//Sentry
 		'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
 
+		//Carbon
+		# Carbon Class
+		'Carbon'		  => 'Carbon\Carbon',
+
 	),
 
 );

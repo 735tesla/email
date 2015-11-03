@@ -22,12 +22,14 @@
     </head>
 
     <body style="display:none;background-color:#eceff1">
+      <?php $user = Sentry::getUser(); ?>
     	<nav>
 		    <div class="nav-wrapper container">
-		      <a href="#!" class="brand-logo">hackGFS</a>
+		      <center><a href="{{action('HomeController@main')}}" style="margin-left:-85px" class="brand-logo">hackGFS</a></center>
 		      <ul class="right hide-on-med-and-down">
-		        <li><a title="Leaderboard"><i class="icon-nav ion-trophy"></i></a></li>
-		        <li><a title="Logout"><i class="icon-nav ion-power"></i></a></li>
+		        <!--<li><a title="Leaderboard"><i class="icon-nav ion-trophy"></i></a></li>-->
+            <li><a>Welcome, {{$user->first_name}}</a></li>
+		        <li><a href="{{route('user.logout')}}" title="Logout"><i class="icon-nav ion-power"></i></a></li>
 		      </ul>
 		    </div>
 		</nav>    

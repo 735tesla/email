@@ -17,18 +17,27 @@ Route::group(array('prefix' => 'auth'), function(){
 	
 	Route::get('/register', array('as' => 'user.register.view', 'uses' => 'AuthController@register'));
 
+	Route::get('/logout', array('as' => 'user.logout', 'uses' => 'AuthController@logout'));
+
 	Route::post('/login', array('as' => 'user.login.handle', 'uses' => 'AuthController@handleLogin'));
 	
 	Route::post('/register', array('as' => 'user.register.handle', 'uses' => 'AuthController@handleRegister'));
 });
 
+Route::group(array('prefix' => 'm'), function(){
+	
+	Route::get('/email', array('as' => 'email', 'uses' => 'EmailController@email'));
 
+	Route::get('/sent', array('as' => 'api.email', 'uses' => 'EmailController@sent'));
+
+	Route::post('/email', array('as' => 'email.send', 'uses' => 'EmailController@sendEmail'));
+});
+
+Route::get('/', function(){
+	return Redirect::route('user.login.view');
+});
 
 Route::get('template', 'HomeController@template');
 
 Route::get('/main', 'HomeController@main');
-
-Route::get('/email', array('as' => 'email', 'uses' => 'HomeController@email'));
-
-Route::post('/email', array('as' => 'email.send', 'uses' => 'HomeController@sendEmail'));
 
