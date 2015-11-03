@@ -37,6 +37,7 @@ class EmailController extends BaseController {
 			$email = new Email;
 
 			$email->email = $input['email'];
+			$email->company = $input['name'];
 			$email->user_id = $user->id;
 			$email->save();
 		}
