@@ -41,3 +41,9 @@ Route::get('template', 'HomeController@template');
 
 Route::get('/main', 'HomeController@main');
 
+Route::get('mail', function(){
+	return View::make('emails/sponsor')
+		->with('name', 'Google')
+		->with('user', Sentry::getUser());
+});
+
