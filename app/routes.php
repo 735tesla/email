@@ -17,6 +17,8 @@ Route::group(array('prefix' => 'auth'), function(){
 	
 	Route::get('/register', array('as' => 'user.register.view', 'uses' => 'AuthController@register'));
 
+	Route::get('/approval', array('as' => 'user.activation.wait', 'uses' => 'AuthController@approval'));
+
 	Route::get('/logout', array('as' => 'user.logout', 'uses' => 'AuthController@logout'));
 
 	Route::post('/login', array('as' => 'user.login.handle', 'uses' => 'AuthController@handleLogin'));
@@ -31,6 +33,22 @@ Route::group(array('prefix' => 'm'), function(){
 	Route::get('/sent', array('as' => 'api.email', 'uses' => 'EmailController@sent'));
 
 	Route::post('/email', array('as' => 'email.send', 'uses' => 'EmailController@sendEmail'));
+});
+
+Route::group(array('prefix' => 'user'), function(){
+	
+	Route::get('leaderboards', array('as' => 'rank.view', 'uses' => 'UserController@rank'));
+
+	//Route::get('admin/{code}', array('as' => 'admin.activate', 'uses' => 'AuthController@activate'));
+
+});
+
+Route::group(array('prefix' => 'activate'), function(){
+	
+	Route::get('{code}', array('as' => 'user.activate', 'uses' => 'AuthController@fakeActivate'));
+
+	Route::get('admin/{code}', array('as' => 'admin.activate', 'uses' => 'AuthController@activate'));
+
 });
 
 Route::get('/', function(){

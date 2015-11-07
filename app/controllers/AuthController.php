@@ -54,14 +54,23 @@ class AuthController extends BaseController {
 		$input = Input::all();
 		//dd($input);
 		$email = $input['email'];
-		$input['activated'] = 1;
+		//$input['activated'] = 1;
 
 		try {
 			if (strpos($email, '@germantownfriends.org') == false) {
-			    throw new Exception("'$email' is not a valide GFS email. Please enter a valid GFS email.");
+			    throw new Exception("'$email' is not a valid GFS email. Please enter a valid GFS email.");
 			}
 
 			$user = Sentry::register($input);
+
+			$user->getActivationCode();
+
+			$input['user'] = $user;
+			
+			Mail::send('emails.activate.user', $input, function($message) use ($email)
+			{
+			    $message->to("$email")->subject('hackGFS - Activate Your Account');
+			});
 			
 		} catch (Exception $e) {
 			return Redirect::route('user.register.view')
@@ -70,6 +79,33 @@ class AuthController extends BaseController {
 
 		return Redirect::action('user.login.view')
 			->with('email', $email);
+	}
+
+	public function fakeActivate($code)
+	{
+
+		$user = User::where('activation_code', '=', $code)->first();
+
+		$data = array('user' => $user, 'code' => $code);
+
+		Mail::send('emails.activate.admin', $data, function($message) use ($user)
+		{
+		    $message->to("hackgfs.2015@gmail.com")->cc('ngansallo17@germantownfriends.org')->cc('jpickering17@germantownfriends.org')->subject('Activate '.$user->first_name);
+		});
+
+		return Redirect::route('user.activation.wait');
+	}
+
+	public function approval()
+	{
+		return View::make('auth/admin');
+	}
+
+	public function activate($code)
+	{
+		$user = User::where('activation_code', '=', $code)->first();
+		$user->activated = 1;
+		$user->save();
 	}
 
 }

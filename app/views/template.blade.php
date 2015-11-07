@@ -29,7 +29,8 @@
 		      <ul class="right hide-on-med-and-down">
 		        <!--<li><a title="Leaderboard"><i class="icon-nav ion-trophy"></i></a></li>-->
             <li><a>Welcome, {{$user->first_name}}</a></li>
-		        <li><a href="{{route('user.logout')}}" title="Logout"><i class="icon-nav ion-power"></i></a></li>
+            <li><a href="{{route('rank.view')}}" title="Ranking"><i class="icon-nav ion-podium"></i></a></li>
+            <li><a href="{{route('user.logout')}}" title="Logout"><i class="icon-nav ion-power"></i></a></li>
 		      </ul>
 		    </div>
 		</nav>    

@@ -1,6 +1,7 @@
 <?php
 
-class HomeController extends BaseController {
+
+class UserController extends BaseController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -15,25 +16,19 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function rank()
 	{
-		return View::make('hello');
-	}
+		$users = User::all();
 
-	public function template()
-	{
-		return View::make('template');
-	}
-
-	public function main()
-	{
-		$emails = Email::orderBy('created_at', 'desc')->get();
-
-		$user = Sentry::getUser();
-
-		return View::make('main')
-			->with('user', $user)
-			->with('emails', $emails);
+		$data = array();
+		
+		foreach ($users as $user) {
+			$data[$user->id] = $user->email()->count();
+		}
+		arsort($data);
+				
+		return View::make('user/rank')
+			->with('data', $data);
 	}
 
 

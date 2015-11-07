@@ -14,5 +14,11 @@ class Email extends Eloquent {
 		return $this->belongsTo('User');
 	}
 
+	public function since()
+	{
+		$since = Carbon::createFromTimeStamp(strtotime($this->created_at))->diffForHumans();
+		return $since;
+	}
+
 
 }
