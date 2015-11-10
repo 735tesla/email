@@ -104,6 +104,19 @@ class AuthController extends BaseController {
 	public function activate($code)
 	{
 		$user = User::where('activation_code', '=', $code)->first();
+
+		$data = array('user' => $user);
+
+		$email = $user->email;
+
+		if(!$user->activated)
+		{
+			Mail::send('emails.activate.notification', $data, function($message) use ($email)
+			{
+			    $message->to("$email")->subject('hackGFS - You\'ve Been Activated!');
+			});
+		}
+
 		$user->activated = 1;
 		$user->save();
 	}

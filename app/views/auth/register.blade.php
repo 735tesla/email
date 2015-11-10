@@ -37,15 +37,15 @@
                               <label>Materialize Select</label>
                             </div>
                             <div class="input-field col s6">
-                              <input placeholder="Noah" name="first_name" id="first_name" type="text" class="validate" required>
+                              <input placeholder="ex. Noah" name="first_name" id="first_name" type="text" class="validate" required>
                               <label for="first_name">First Name</label>
                             </div>
                             <div class="input-field col s6">
-                              <input id="last_name" name="last_name" placeholder="Gansallo" type="text" class="validate" required>
+                              <input id="last_name" name="last_name" placeholder="ex. Gansallo" type="text" class="validate" required>
                               <label for="last_name">Last Name</label>
                             </div>
                             <div class="input-field col s12">
-                              <input id="email" name="email" placeholder="ngansallo17@germantownfriends.org" type="email" class="validate" required>
+                              <input id="email" name="email" placeholder="ex. ngansallo17@germantownfriends.org" type="email" class="validate" required>
                               <label for="email">GFS Email</label>
                             </div>
                             <div class="input-field col s12">
