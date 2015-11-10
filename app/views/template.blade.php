@@ -44,8 +44,8 @@
               <i class="large material-icons">mode_edit</i>
             </a>
             <ul>
-              <!--<li><a class="btn-floating blue" title="Email a Judge"><i style="font-size:22pt;margin-top:5px" class="material-icons">account_box</i></a></li>
-              <li><a href="{{route('email')}}" class="btn-floating green" title="Email a Sponsor"><i style="font-size:22pt;margin-top:5px" class="material-icons">credit_card</i></a></li> -->
+              <li><a class="btn-floating waves-effect waves-light blue modal-trigger" href="#announce" title="Post an Announcement"><i style="font-size:22pt;margin-top:5px" class="material-icons">comment</i></a></li>
+              <!--<li><a href="{{route('email')}}" class="btn-floating green" title="Email a Sponsor"><i style="font-size:22pt;margin-top:5px" class="material-icons">credit_card</i></a></li> -->
               <!--<li><a class="btn-floating green"></a></li>
               <li><a class="btn-floating blue"></a></li>-->
             </ul>
@@ -58,6 +58,7 @@
 
     <script type="text/javascript">
     	$(document).ready(function(){
+        $('.modal-trigger').leanModal();
     		$('html, body').fadeIn(1000, function(){
     			$('#slide').animate({
     				'margin-top': '0px',
@@ -67,7 +68,18 @@
     	})
     </script>
     
+    @yield('modal')
 
+    <!-- Modal Structure -->
+    <div id="announce" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Post an Announcement to the Club</h4>
+        <p>A bunch of text</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+      </div>
+    </div>
 
     </body>
 </html>
