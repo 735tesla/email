@@ -39,6 +39,8 @@ Route::group(array('prefix' => 'user'), function(){
 	
 	Route::get('leaderboards', array('as' => 'rank.view', 'uses' => 'UserController@rank'));
 
+	Route::post('announce', array('as' => 'announce.send', 'uses' => 'EmailController@announce'));
+
 	//Route::get('admin/{code}', array('as' => 'admin.activate', 'uses' => 'AuthController@activate'));
 
 });
@@ -58,10 +60,4 @@ Route::get('/', function(){
 Route::get('template', 'HomeController@template');
 
 Route::get('/main', 'HomeController@main');
-
-Route::get('mail', function(){
-	return View::make('emails/sponsor')
-		->with('name', 'Google')
-		->with('user', Sentry::getUser());
-});
 

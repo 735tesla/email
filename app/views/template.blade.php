@@ -58,6 +58,11 @@
 
     <script type="text/javascript">
     	$(document).ready(function(){
+
+        $('#submitAnnounce').on('click', function(){
+          $("#announcementForm").submit();
+        });
+
         $('.modal-trigger').leanModal();
     		$('html, body').fadeIn(1000, function(){
     			$('#slide').animate({
@@ -73,11 +78,20 @@
     <!-- Modal Structure -->
     <div id="announce" class="modal modal-fixed-footer">
       <div class="modal-content">
+        <div class="row" class="col s12">
         <h4>Post an Announcement to the Club</h4>
-        <p>A bunch of text</p>
+          <form id="announcementForm" method="POST" action="{{route('announce.send')}}">
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea name="content" id="announcement" class="materialize-textarea" required></textarea>
+                <label for="announcement">Tell the club something...</label>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
       <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+        <a href="#!" id="submitAnnounce" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
       </div>
     </div>
 

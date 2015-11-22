@@ -58,5 +58,36 @@ class EmailController extends BaseController {
 		return $emails;
 	}
 
+	public function announce()
+	{
+		$content = Input::get('content');
+
+		$content = nl2br($content);
+
+		$users = User::all();
+
+		foreach($users as $user)
+		{
+			$input = array('content' => $content, 'user' => $user);
+
+			Mail::send('emails.announce', $input, function($message) use ($user)
+			{
+			    $message->to("$user->email")->subject('hackGFS - Announcement from '.Sentry::getUser()->first_name.' '.Sentry::getUser()->last_name);
+			});
+		}		
+
+		$user = Sentry::getUser();
+
+		$email = new Email;
+
+		$email->email = 'hackgfs.2015@gmail.com';
+		$email->company = 'hackGFS';
+		$email->user_id = $user->id;
+		$email->content = $content;
+		$email->save();
+
+		return Redirect::back();
+	}
+
 
 }

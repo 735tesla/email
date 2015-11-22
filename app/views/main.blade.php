@@ -9,6 +9,10 @@
       <span class="white-text">{{$email->user->info()}} sent an email to <strong>
       	<a style="color:inherit" href="#" class="tooltipped" data-position="bottom" data-delay="15" data-tooltip="{{$email->email}}">{{$email->company}}</a></strong> {{$email->since()}}
       </span>
+      @if(!is_null($email->content))
+      	<hr>
+      	<p class="white-text">{{$email->content}}</p>
+      @endif
     </div>
   </div>
 </div>
