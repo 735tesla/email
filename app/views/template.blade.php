@@ -10,6 +10,9 @@
 
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{{asset('js/materialize.min.js')}}"></script>
+
       <!--Let browser know website is optimized for mobile
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
 
@@ -45,16 +48,13 @@
             </a>
             <ul>
               <li><a class="btn-floating waves-effect waves-light blue modal-trigger" href="#announce" title="Post an Announcement"><i style="font-size:22pt;margin-top:5px" class="material-icons">comment</i></a></li>
-              <!--<li><a href="{{route('email')}}" class="btn-floating green" title="Email a Sponsor"><i style="font-size:22pt;margin-top:5px" class="material-icons">credit_card</i></a></li> -->
+              <li><a href="{{route('email')}}" class="btn-floating green" title="Email a Sponsor"><i style="font-size:22pt;margin-top:5px" class="material-icons">email</i></a></li>
               <!--<li><a class="btn-floating green"></a></li>
               <li><a class="btn-floating blue"></a></li>-->
             </ul>
         </div>
 
 
-    <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="{{asset('js/materialize.min.js')}}"></script>
 
     <script type="text/javascript">
     	$(document).ready(function(){

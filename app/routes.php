@@ -45,6 +45,22 @@ Route::group(array('prefix' => 'user'), function(){
 
 });
 
+Route::group(array('prefix' => 'section'), function(){
+	
+	Route::get('experimenting', 'SectionController@experimenting');
+
+	Route::get('marketing', 'SectionController@marketing');
+
+	Route::get('api', 'SectionController@api');
+
+	Route::get('vc', 'SectionController@vc');
+
+	Route::get('charity', 'SectionController@charity');
+
+	Route::get('exposure', 'SectionController@exposure');
+
+});
+
 Route::group(array('prefix' => 'activate'), function(){
 	
 	Route::get('{code}', array('as' => 'user.activate', 'uses' => 'AuthController@fakeActivate'));
