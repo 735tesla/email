@@ -1,6 +1,12 @@
 @extends('template')
 
 @section('content')
+<style type="text/css">
+  p.white-text > div {
+    margin-top: 30px!important;
+  }
+</style>
+
 
 <div class="row" style="padding-top:75px">
     <div class="col s6 offset-s3">
@@ -20,12 +26,23 @@
                   <label for="email">Email</label>
                 </div>
               </div>
+              <span class="card-title">Email Sections</span>
+              <hr>
+              <p id="labels" class="white-text">
+
+                <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
+                <label for="filled-in-box" class="white-text">Experimenting 
+                  <a href="#content" data-url="{{action('SectionController@experimenting')}}" style="opacity:.7;color:white" class="modal-trigger">Preview this section</a>
+                </label>
+
+                <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
+                <label for="filled-in-box" class="white-text">Marketing <a href="#content" data-url="{{action('SectionController@marketing')}}" style="opacity:.7;color:white" class="modal-trigger">Preview this section</a></label>
+              </p>
+              <br>
               <center><button class="btn waves-effect waves-light" type="submit">Submit
                   <i class="material-icons right">send</i>
                 </button></center>
             </form>
-
-            <a href="#content" id="test" class="modal-trigger">Preview this section</a>
           </div>
         </div>
       </div>
@@ -34,12 +51,17 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $('#test').on('click', function(){
-      $.ajax({
-        url: "{{action('SectionController@experimenting')}}",
-        success: function(data){
-          $('#preview').html(data);
-        }
+    $('p.white-text > label > a').each(function(){
+      dataurl = $(this).data('url');
+
+      $(this).on('click', function(){
+        $.ajax({
+          url: dataurl,
+          success: function(data){
+            console.log(dataurl);
+            $('#preview').html(data);
+          }
+        });
       });
     });
   });
