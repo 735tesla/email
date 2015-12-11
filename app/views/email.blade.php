@@ -15,10 +15,10 @@
           <span class="card-title">Email a Potential Sponsor</span>
           <hr>
           <div class="row">
-            <form class="col s12" action="{{route('email.send')}}" method="POST">
+            <form class="col s12" action="{{route('email.build')}}" method="POST">
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="password" name="name" placeholder="ex. Google or Mark Zuckerberg" type="text" class="validate" required>
+                  <input id="password" name="name" placeholder="ex. Google or Mark Zuckerberg" type="text" class="validate" autocomplete="off" required>
                   <label for="password">Company or Recipient Name</label>
                 </div>
                 <div class="input-field col s12">
@@ -30,16 +30,39 @@
               <hr>
               <p id="labels" class="white-text">
 
-                <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
-                <label for="filled-in-box" class="white-text">Experimenting 
-                  <a href="#content" data-url="{{action('SectionController@experimenting')}}" style="opacity:.7;color:white" class="modal-trigger">Preview this section</a>
+                <input type="checkbox" name="section[experimenting]" class="filled-in" id="exp"  />
+                <label for="exp" class="white-text" >Experimenting 
+                  <a href="#content" data-title="Experimenting" data-url="{{action('SectionController@experimenting')}}" style="opacity:.7;color:white" class="modal-trigger">Preview this section</a>
                 </label>
 
-                <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
-                <label for="filled-in-box" class="white-text">Marketing <a href="#content" data-url="{{action('SectionController@marketing')}}" style="opacity:.7;color:white" class="modal-trigger">Preview this section</a></label>
+                <input type="checkbox" name="section[marketing]" class="filled-in" id="mar"  />
+                <label for="mar" class="white-text">Marketing 
+                  <a href="#content" data-title="Marketing" data-url="{{action('SectionController@marketing')}}" style="opacity:.7;color:white" class="modal-trigger">Preview this section</a>
+                </label>
+
+                <input type="checkbox" name="section[api]" class="filled-in" id="api"  />
+                <label for="api" class="white-text">API
+                  <a href="#content" data-title="API Resources" data-url="{{action('SectionController@api')}}" style="opacity:.7;color:white" class="modal-trigger">Preview this section</a>
+                </label>
+
+                <input type="checkbox" name="section[vc]" class="filled-in" id="vc"  />
+                <label for="vc" class="white-text">Venture Capitalist 
+                  <a href="#content" data-title="Venture Capitalist" data-url="{{action('SectionController@vc')}}" style="opacity:.7;color:white" class="modal-trigger">Preview this section</a>
+                </label>
+
+                <input type="checkbox" name="section[charity]" class="filled-in" id="cha"  />
+                <label for="cha" class="white-text">Charity 
+                  <a href="#content" data-title="Charity" data-url="{{action('SectionController@charity')}}" style="opacity:.7;color:white" class="modal-trigger">Preview this section</a>
+                </label>
+
+                <input type="checkbox" name="section[exposure]" class="filled-in" id="expo" />
+                <label for="expo" class="white-text">Exposure 
+                  <a href="#content" data-title="Exposure" data-url="{{action('SectionController@exposure')}}" style="opacity:.7;color:white" class="modal-trigger">Preview this section</a>
+                </label>
+
+                
               </p>
-              <br>
-              <center><button class="btn waves-effect waves-light" type="submit">Submit
+              <center><button class="btn waves-effect waves-light" style="margin-top:20px;margin-bottom:-10px" type="submit">Submit
                   <i class="material-icons right">send</i>
                 </button></center>
             </form>
@@ -51,14 +74,19 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
+
+    $('p.white-text > label').each(function(){
+      $(this).addClass('col s12').css('padding-left', '35px');
+    });
+
     $('p.white-text > label > a').each(function(){
-      dataurl = $(this).data('url');
+
+      $(this).addClass('right');
 
       $(this).on('click', function(){
         $.ajax({
-          url: dataurl,
+          url: $(this).data('url'),
           success: function(data){
-            console.log(dataurl);
             $('#preview').html(data);
           }
         });

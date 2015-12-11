@@ -21,12 +21,33 @@ class EmailController extends BaseController {
 		return View::make('email');
 	}
 
+	public function build()
+	{
+		$input = Input::all();
+
+		$sections = $input['section'];
+
+		$user = Sentry::getUser();
+
+		$user = User::find($user->id);
+
+		return View::make('build')
+			->with('input', $input)
+			->with('sections', $sections)
+			->with('user', $user);
+	}
+
 	public function sendEmail()
 	{
 		$input = Input::all();
+
+		dd($input);
+
+
 		$user = Sentry::getUser();
 		$input['user'] = $user;
 		$email = $input['email'];
+
 
 		if(is_null(Email::where('email', '=', $email)->first()))
 		{

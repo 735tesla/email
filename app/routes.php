@@ -32,6 +32,8 @@ Route::group(array('prefix' => 'm'), function(){
 
 	Route::get('/sent', array('as' => 'api.email', 'uses' => 'EmailController@sent'));
 
+	Route::post('/build', array('as' => 'email.build', 'uses' => 'EmailController@build'));
+
 	Route::post('/email', array('as' => 'email.send', 'uses' => 'EmailController@sendEmail'));
 });
 
@@ -58,6 +60,8 @@ Route::group(array('prefix' => 'section'), function(){
 	Route::get('charity', 'SectionController@charity');
 
 	Route::get('exposure', 'SectionController@exposure');
+
+	Route::get('undefined/{key}', 'SectionController@any');
 
 });
 
