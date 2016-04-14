@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'hackgfs.2015@gmail.com', 'name' => 'The hackGFS Community'),
+	'from' => array('address' => 'hackgfs.organizers@gmail.com', 'name' => 'The hackGFS Community'),
 
 	/*
 	|--------------------------------------------------------------------------
